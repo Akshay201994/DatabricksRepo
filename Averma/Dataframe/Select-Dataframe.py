@@ -144,7 +144,7 @@ df.select(df.instant,df["mnth"]).show()
 # COMMAND ----------
 
 from pyspark.sql.functions import col
-df.select(col("yr").alias("year")).show()
+display(df.select("*",col("yr").alias("year")))
 
 # COMMAND ----------
 
