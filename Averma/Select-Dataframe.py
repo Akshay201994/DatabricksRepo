@@ -61,15 +61,43 @@
 # MAGIC ```
 # MAGIC //Using Col
 # MAGIC from pyspark.sql.functions import col
-# MAGIC df.select(col("columnName1"),col("columnName2"))
+# MAGIC df.select(col("columnName1"),col("columnName2")).show()
 # MAGIC
 # MAGIC //Using String
-# MAGIC df.select("columnName1","columnName2")
+# MAGIC df.select("columnName1","columnName2").show()
 # MAGIC
 # MAGIC //Using Lists-2ways
-# MAGIC df.select(df.columnName1,df.columnName2)
+# MAGIC df.select(df.columnName1,df.columnName2).show()
 # MAGIC
-# MAGIC df.select(df["columnName1"],df["columnName2"])
+# MAGIC df.select(df["columnName1"],df["columnName2"]).show()
+# MAGIC ```
+# MAGIC
+# MAGIC ### Rename Column(Aliasing) *We cant use aliasing for Select dataframe*
+# MAGIC ```
+# MAGIC df.select(col("columnName").alias("newColumnName")).show()
+# MAGIC ```
+# MAGIC
+# MAGIC ### Tail and Take Functions
+# MAGIC ```
+# MAGIC df.tail(num) -- Returns the last number of rows as a list of Row.
+# MAGIC
+# MAGIC df.take(num) -- Returns the first num of rows as a list of Row.
+# MAGIC ```
+# MAGIC
+# MAGIC ### Dataframe.Describe function 
+# MAGIC
+# MAGIC **includes count,mean,stddev,min,max. If no columns are given, this function computes statistics for all numerical or string colummns.**
+# MAGIC ```
+# MAGIC display(df.describe()) -- For all columns
+# MAGIC display(df.describe(["columnName"]) --For specific column
+# MAGIC ```
+# MAGIC
+# MAGIC ### Dataframe Dtypes
+# MAGIC **Returns all column names and their data types as a list.**
+# MAGIC ```
+# MAGIC df.dtypes()
+# MAGIC or
+# MAGIC df.printSchema()
 # MAGIC ```
 
 # COMMAND ----------
@@ -112,3 +140,28 @@ df.select(col("season"),col("yr"),col("mnth"),col("holiday")).show()
 # COMMAND ----------
 
 df.select(df.instant,df["mnth"]).show()
+
+# COMMAND ----------
+
+from pyspark.sql.functions import col
+df.select(col("yr").alias("year")).show()
+
+# COMMAND ----------
+
+display(df)
+
+# COMMAND ----------
+
+display(df.take(2))
+
+# COMMAND ----------
+
+display(df.tail(2))
+
+# COMMAND ----------
+
+display(df.describe(['instant']))
+
+# COMMAND ----------
+
+display(df.dtypes)
