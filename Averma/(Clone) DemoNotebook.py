@@ -65,3 +65,23 @@ print(files)
 # COMMAND ----------
 
 display(files)
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC Create schema av2094
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC create table
+# MAGIC av2094.email
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC COPY INTO av2094.email
+# MAGIC FROM '/FileStore/csv/'
+# MAGIC FILEFORMAT=CSV
+# MAGIC FORMAT_OPTIONS ('header'='true')
+# MAGIC COPY_OPTIONS ('mergeSchema'='True')
