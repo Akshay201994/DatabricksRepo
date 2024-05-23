@@ -49,3 +49,7 @@ df4.write.option("Header",True).mode("overwrite").csv("/FileStore/csv/output")
 # COMMAND ----------
 
 display(spark.read.csv("/FileStore/csv/output/part-00000-tid-7704981531040127206-11c9d330-e458-4fb4-ae23-01fe416862da-15-1-c000.csv"))
+
+# COMMAND ----------
+
+df=spark.read.csv("https://avstorage2094.blob.core.windows.net/input/Emails.csv")
